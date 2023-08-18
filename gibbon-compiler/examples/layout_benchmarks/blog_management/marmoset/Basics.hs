@@ -7,6 +7,8 @@ import Gibbon.Maybe
 
 type Text   = Vector Char
 
+type TextList = Vector Text
+
 --type Target = (Text, Text)
 --type Attr   = (Text, (PList Text), (PList (Text, Text)))
 --type Format = Format Text
@@ -74,100 +76,102 @@ data Blog =   End
 
 getChar :: Int -> Char
 getChar decimal =  
-        if decimal == 0 then '!'
-        else if decimal == 1 then '#'
-        else if decimal == 2 then '$'
-        else if decimal == 3 then '%'
-        else if decimal == 4 then '&'
-        else if decimal == 5 then '('
-        else if decimal == 6 then ')'
-        else if decimal == 7 then '*'
-        else if decimal == 8 then '+'
-        else if decimal == 9 then ','
-        else if decimal == 10 then '-'
-        else if decimal == 11 then '.'
-        else if decimal == 12 then '/'
-        else if decimal == 13 then '0'
-        else if decimal == 14 then '1'           
-        else if decimal == 15 then '2'
-        else if decimal == 16 then '3'
-        else if decimal == 17 then '4'
-        else if decimal == 18 then '5'
-        else if decimal == 19 then '6'
-        else if decimal == 20 then '7'
-        else if decimal == 21 then '8'
-        else if decimal == 22 then '9'
-        else if decimal == 23 then ':'
-        else if decimal == 24 then ';'
-        else if decimal == 25 then '<'
-        else if decimal == 26 then '='
-        else if decimal == 27 then '>'
-        else if decimal == 28 then '?'
-        else if decimal == 29 then '@'
-        else if decimal == 30 then 'A'
-        else if decimal == 31 then 'B'
-        else if decimal == 32 then 'C'
-        else if decimal == 33 then 'D'
-        else if decimal == 34 then 'E'
-        else if decimal == 35 then 'F'
-        else if decimal == 36 then 'G'
-        else if decimal == 37 then 'H'
-        else if decimal == 38 then 'I'
-        else if decimal == 39 then 'J'
-        else if decimal == 40 then 'K'
-        else if decimal == 41 then 'L'
-        else if decimal == 42 then 'M'
-        else if decimal == 43 then 'N'
-        else if decimal == 44 then 'O'
-        else if decimal == 45 then 'P'
-        else if decimal == 46 then 'Q'
-        else if decimal == 47 then 'R'
-        else if decimal == 48 then 'S'
-        else if decimal == 49 then 'T'
-        else if decimal == 50 then 'U'
-        else if decimal == 51 then 'V'
-        else if decimal == 52 then 'W'
-        else if decimal == 53 then 'X'
-        else if decimal == 54 then 'Y'
-        else if decimal == 55 then 'Z'
-        else if decimal == 56 then '['
-        else if decimal == 57 then ']'
-        else if decimal == 58 then '^'
-        else if decimal == 59 then '_'
-        else if decimal == 60 then '`'
-        else if decimal == 61 then 'a'
-        else if decimal == 62 then 'b'
-        else if decimal == 63 then 'c'
-        else if decimal == 64 then 'd'
-        else if decimal == 65 then 'e'
-        else if decimal == 66 then 'f'
-        else if decimal == 67 then 'g'
-        else if decimal == 68 then 'h'
-        else if decimal == 69 then 'i'
-        else if decimal == 70 then 'j'
-        else if decimal == 71 then 'k'
-        else if decimal == 72 then 'l'
-        else if decimal == 73 then 'm'
-        else if decimal == 74 then 'n'
-        else if decimal == 75 then 'o'
-        else if decimal == 76 then 'p'
-        else if decimal == 77 then 'q'
-        else if decimal == 78 then 'r'
-        else if decimal == 79 then 's'
-        else if decimal == 80 then 't'
-        else if decimal == 81 then 'u'
-        else if decimal == 82 then 'v'
-        else if decimal == 83 then 'w'
-        else if decimal == 84 then 'x'
-        else if decimal == 85 then 'y'
-        else if decimal == 86 then 'z'
-        else if decimal == 87 then '{'
-        else if decimal == 88 then '|'
-        else if decimal == 89 then '}'
-        else '~'
+        --if decimal == 0 then '!'
+        --else if decimal == 1 then '#'
+        --else if decimal == 2 then '$'
+        --else if decimal == 3 then '%'
+        --else if decimal == 4 then '&'
+        --else if decimal == 5 then '('
+        --else if decimal == 6 then ')'
+        --else if decimal == 7 then '*'
+        --else if decimal == 8 then '+'
+        --else if decimal == 9 then ','
+        --else if decimal == 10 then '-'
+        --else if decimal == 11 then '.'
+        --else if decimal == 12 then '/'
+        --else if decimal == 13 then '0'
+        --else if decimal == 14 then '1'           
+        --else if decimal == 15 then '2'
+        --else if decimal == 16 then '3'
+        --else if decimal == 17 then '4'
+        --else if decimal == 18 then '5'
+        --else if decimal == 19 then '6'
+        --else if decimal == 20 then '7'
+        --else if decimal == 21 then '8'
+        --else if decimal == 22 then '9'
+        --else if decimal == 23 then ':'
+        --else if decimal == 24 then ';'
+        --else if decimal == 25 then '<'
+        --else if decimal == 26 then '='
+        --else if decimal == 27 then '>'
+        --else if decimal == 28 then '?'
+        --else if decimal == 29 then '@'
+        --else if decimal == 30 then 'A'
+        --else if decimal == 31 then 'B'
+        --else if decimal == 32 then 'C'
+        --else if decimal == 33 then 'D'
+        --else if decimal == 34 then 'E'
+        --else if decimal == 35 then 'F'
+        --else if decimal == 36 then 'G'
+        --else if decimal == 37 then 'H'
+        --else if decimal == 38 then 'I'
+        --else if decimal == 39 then 'J'
+        --else if decimal == 40 then 'K'
+        --else if decimal == 41 then 'L'
+        ---else if decimal == 42 then 'M'
+        --else if decimal == 43 then 'N'
+        --else if decimal == 44 then 'O'
+        --else if decimal == 45 then 'P'
+        --else if decimal == 46 then 'Q'
+        --else if decimal == 47 then 'R'
+        --else if decimal == 48 then 'S'
+        --else if decimal == 49 then 'T'
+        --else if decimal == 50 then 'U'
+        --else if decimal == 51 then 'V'
+        --else if decimal == 52 then 'W'
+        --else if decimal == 53 then 'X'
+        --else if decimal == 54 then 'Y'
+        --else if decimal == 55 then 'Z'
+        --else if decimal == 56 then '['
+        --else if decimal == 57 then ']'
+        --else if decimal == 58 then '^'
+        --else if decimal == 59 then '_'
+        --else if decimal == 60 then '`'
+        if decimal == 0 then 'a'
+        --else if decimal == 61 then 'a'
+        else if decimal == 1 then 'b'
+        else if decimal == 2 then 'c'
+        else if decimal == 3 then 'd'
+        else if decimal == 4 then 'e'
+        else if decimal == 5 then 'f'
+        else if decimal == 6 then 'g'
+        else if decimal == 7 then 'h'
+        else if decimal == 8 then 'i'
+        else if decimal == 9 then 'j'
+        else if decimal == 10 then 'k'
+        else if decimal == 11 then 'l'
+        else if decimal == 12 then 'm'
+        else if decimal == 13 then 'n'
+        else if decimal == 14 then 'o'
+        else if decimal == 15 then 'p'
+        else if decimal == 16 then 'q'
+        else if decimal == 17 then 'r'
+        else if decimal == 18 then 's'
+        else if decimal == 19 then 't'
+        else if decimal == 20 then 'u'
+        else if decimal == 21 then 'v'
+        else if decimal == 22 then 'w'
+        else if decimal == 23 then 'x'
+        else if decimal == 24 then 'y'
+        --else if decimal == 86 then 'z'
+        else 'z'
+        --else if decimal == 87 then '{'
+        --else if decimal == 88 then '|'
+        --else if decimal == 89 then '}'
+        --else '~'
 
 mkChar :: Int -> Char 
-mkChar val = getChar (mod rand 91)
+mkChar val = getChar (mod rand 26)
 
 -- Get a random word, Int is the length of the string.
 -- Based on internet, average english word is 5 characters long
@@ -242,6 +246,7 @@ cmp start end word1 word2 =
 
 -- Search a TagList (PList Text) for some keyword
 searchTagList :: Text -> PList Text -> Bool 
+{-# INLINE searchTagList #-}
 searchTagList keyword taglist = case taglist of 
    Nil -> False 
    Cons word rst -> (compareWord keyword word) || (searchTagList keyword rst) 
@@ -337,6 +342,7 @@ emphasizeKeywordInline keyword inline =
 
 -- Emphasize a particular keyword in an Inline list
 emphasizeInlineListForKeyword :: Text -> PList Inline -> PList Inline
+{-# INLINE emphasizeInlineListForKeyword #-}
 emphasizeInlineListForKeyword keyword inline_list = 
    case inline_list of 
       Nil                -> Nil 
@@ -375,12 +381,10 @@ emphasizeBlogContent' keyword oldContent = case oldContent of
                                                 Content block -> Content (emphasizeKeywordInBlock keyword block)
 
 
-{- # INLINE # -}
-emphasizeBlogContent :: Text -> BlogContent -> Bool -> BlogContent
-emphasizeBlogContent keyword oldContent present = case oldContent of 
-                                                            Content block -> if (present)
-                                                                             then Content (emphasizeKeywordInBlock keyword block)
-                                                                             else Content block
+
+emphasizeBlogContent :: Text -> BlogContent -> BlogContent
+emphasizeBlogContent keyword oldContent = case oldContent of 
+                                             Content block -> Content (emphasizeKeywordInBlock keyword block)
 
 searchBlogContent :: Text -> BlogContent -> Bool 
 searchBlogContent keyword content = case content of 
@@ -395,10 +399,31 @@ fileToContent file word plist_inline index max_len =
                                  character    = nth file index
                                  isSpace      = if ( character *==* (head " ") ) then True else False
                                  char_vec     = (singleton character)
-                                 plist_space :: PList Inline
-                                 plist_space = (Cons (Space) plist_inline) 
+                                 --plist_space :: PList Inline
+                                 --plist_space = (Cons (Space) plist_inline) 
                                 in if (isSpace) then (fileToContent file (singleton (nth file (index+1))) (Cons (Str word) plist_inline) (index+2) max_len)  
                                                 else (fileToContent file (append word char_vec) (plist_inline) (index+1) max_len)
+
+
+fileToContent' :: Vector Char -> Vector Char -> TextList -> Int -> Int -> TextList
+fileToContent' file word running_list index max_len = 
+      if index >= max_len then (append running_list (valloc 0) )    --(generate 1 (\i -> ""))                                                                 
+                           else let 
+                                 character :: Char
+                                 character    = nth file index
+                                 isSpace      = if ( character *==* (head " ") ) then True else False
+                                 char_vec     = (singleton character)
+                                in if (isSpace) then (fileToContent' file (singleton (nth file (index+1))) (append running_list (generate 1 (\i -> word))) (index+2) max_len)  
+                                                else (fileToContent' file (append word char_vec) (running_list) (index+1) max_len)
+
+printWordList :: TextList -> Int -> Int -> ()
+printWordList vec start end = if start < end then
+                                 let 
+                                    element = nth vec start
+                                    _   = printVec (\i -> printchar i) element
+                                  in printWordList vec (start+1) end
+                              else ()  
+
 
 fileToTags :: Vector Char -> Vector Char -> Int -> Int -> PList Text 
 fileToTags file word index max_len = 
@@ -419,8 +444,197 @@ mkTagsFromText f' =
          in tags' 
 
 
+{- # INLINE # -}
 mkContentFromText :: Text -> BlogContent
 mkContentFromText f = 
          let block   = fileToContent f  (singleton (nth f  0)) Nil 1 (vlength f)
              content = mkBlogContent block 
            in content
+
+-- Make an Inline type, option chooses what kind of Inline data type we are creating
+-- This creates all the base cases for the inline type 
+mkInlineBaseCase :: Int -> Inline
+mkInlineBaseCase option = 
+   if option == 0 then (Str (getRandomString 5))   -- get a random word
+   else Space 
+
+-- Make a list of Inline data Type.
+mkInlineList :: Int -> Int -> (PList Inline)
+mkInlineList length base = 
+   if length <= 0 then Nil 
+   -- If its not base case, then don't stop recursion. 
+   else if (base == 0) then 
+      let item = Emph (mkInlineList 100 1)
+          rst  = (mkInlineList (length - 1) base)
+          in Cons item rst
+   -- If its  base case, then stop recursion in Inline data type and only add base cases. 
+   else let item = (mkInlineBaseCase (mod rand 4))
+            rst  = mkInlineList (length - 1) base 
+         in Cons item rst
+
+-- Make a list of Inline data Type.
+mkInlineList' :: Int -> Int -> TextList -> (PList Inline)
+mkInlineList' length index words = 
+   if index >= length then Nil  
+   else let item = Str (nth words index)
+            rst  = mkInlineList' length (index+1) words 
+         in Cons item rst
+
+mkRandomInlineList :: Int -> (PList Inline)
+mkRandomInlineList len = if len <= 0 then Nil 
+                         else let word = Str (getRandomString 1)
+                                  rst  = mkRandomInlineList (len - 1) 
+                                in Cons word rst
+
+mkSomeTags :: Int -> PList Text
+mkSomeTags len = if len <= 0 then Nil 
+                 else let word = "a" --(getRandomString 1)
+                          rst  = mkSomeTags (len - 1)
+                       in Cons word rst
+
+
+-- Make a list of blocks
+mkBlockList :: Int -> Int -> (PList Block)
+mkBlockList length base = 
+   if length <= 0 then Nil
+   else if (base == 0) then
+      let item = (Plain (mkInlineList 1000 1))
+          rst  = (mkBlockList (length - 1) base)
+      in Cons item rst
+   else let item = Null
+            rst  = (mkBlockList (length - 1) base) 
+      in Cons item rst
+
+-- Make a Block data type with random data, make depth of recursion to 1 for now
+-- mkBlock :: Int -> Block
+-- mkBlock option = 
+--    if option == 0 then (Plain (mkInlineList 1000 1))
+--    else if option == 1 then (Para (mkInlineList 1000 1))
+--    else (BlockQuote (mkBlockList 1000 1))
+
+-- -- Base case for make Block
+-- mkBlockBaseCase :: Int -> Block 
+-- mkBlockBaseCase option = 
+--    if option == 0 then HorizontalRule
+--    else Null
+
+-- Make an Inline type, option chooses what kind of Inline data type we are creating
+-- This will Purposefully make Inline lists at a depth of recursion 1, this can be modified to increase the depth of recursion.
+-- This function crates the recursive fields. 
+-- mkInline :: Int -> Inline
+-- mkInline option = 
+--    if option == 0 then (Emph (mkInlineList 100 1))
+--    else if option == 1 then (Underline (mkInlineList 100 1))
+--    else if option == 2 then (Strong (mkInlineList 100 1))
+--    else if option == 3 then (Strikeout (mkInlineList 100 1))
+--    else if option == 4 then (Superscript (mkInlineList 100 1))
+--    else if option == 5 then (Subscript (mkInlineList 100 1))
+--    else if option == 6 then (SmallCaps (mkInlineList 100 1))
+--    else (Note (mkBlockList 100 1))
+
+
+blogLength :: Blog -> Int
+blogLength blog = case blog of
+                        End -> 0
+                        Layout1 a b c d e f rst  -> 1 + blogLength rst
+                        Layout2 a b rst c d e f  -> 1 + blogLength rst
+                        Layout3 a rst b c d e f  -> 1 + blogLength rst
+                        Layout4 a b rst d e f g  -> 1 + blogLength rst
+                        Layout5 rst a b c d e f  -> 1 + blogLength rst
+                        Layout6 a b c d e rst f  -> 1 + blogLength rst
+                        Layout7 rst a b c d e f  -> 1 + blogLength rst
+                        Layout8 a rst b c d e f  -> 1 + blogLength rst
+
+
+printContent :: BlogContent -> ()
+printContent content = 
+    case content of 
+        Content block -> 
+            let _ = printsym (quote "Content ")
+                _ = printBlock block
+            in () 
+
+printTagList :: BlogTags -> ()
+printTagList tags = 
+    case tags of 
+        TagList plist -> 
+            let _ = printsym (quote "TagList ")
+                _ = printPlistText plist
+            in ()
+            
+printDate :: BlogDate -> () 
+printDate date = case date of 
+                     Date str -> let _ = printsym (quote "Date ")
+                                     _ = printVec (\i -> printchar i) str
+                                  in ()
+
+printAuthor :: BlogAuthor -> () 
+printAuthor date = case date of 
+                     Author str -> let _ = printsym (quote "Author ")
+                                       _ = printVec (\i -> printchar i) str
+                                    in ()
+
+printHeader :: BlogHeader -> () 
+printHeader header = case header of 
+                          Header str -> let _ = printsym (quote "Header ")
+                                            _ = printVec (\i -> printchar i) str
+                                         in ()
+
+printID :: BlogId -> () 
+printID id = case id of 
+                     ID val -> let _ = printsym (quote "ID ")
+                                   _ = printint val
+                                in ()
+
+printBlog :: Blog -> () 
+printBlog blog = case blog of 
+                    Layout1 header id author date content tags rst -> let _ = printsym (quote "Layout1 ")
+                                                                          _ = printHeader header
+                                                                          _ = printID id 
+                                                                          _ = printAuthor author 
+                                                                          _ = printDate date 
+                                                                          _ = printContent content 
+                                                                          _ = printTagList tags
+                                                                          _ = printBlog rst
+                                                                       in ()
+
+
+
+printBlock :: Block -> ()
+printBlock block = case block of 
+                       Plain plist -> let _ = printsym (quote "Plain ")
+                                          _ = printPlistInline plist
+                                       in ()
+                       Null -> let _ = printsym (quote "Null")
+                                in ()
+
+printPlistInline :: PList Inline -> ()
+printPlistInline list = case list of 
+                     Cons x rst ->  let _ = printsym (quote "PList ( Cons ")
+                                        _ = printInline x
+                                        _ = printPlistInline rst
+                                        _ = printsym (quote " ) ")
+                                     in ()
+                     Nil  ->  let _ = printsym (quote "Nil")
+                               in ()
+
+printPlistText :: PList Text -> ()
+printPlistText list = case list of 
+                     Cons x rst ->  let _ = printsym (quote "PList ( Cons ")
+                                        _ = printVec (\i -> printchar i) x
+                                        _ = printPlistText rst
+                                        _ = printsym (quote " ) ")
+                                     in ()
+                     Nil  ->  let _ = printsym (quote "Nil")
+                               in ()
+
+printInline :: Inline -> () 
+printInline inline = case inline of 
+                            Str text -> let _ = printsym (quote "Str ")
+                                            _ = printVec (\i -> printchar i) text
+                                         in ()
+                            Emph plist -> let _ = printsym (quote "Emph ")
+                                              _ = printPlistInline plist
+                                           in () 
+                            Space -> let _ = printsym (quote "Space ")
+                                       in ()

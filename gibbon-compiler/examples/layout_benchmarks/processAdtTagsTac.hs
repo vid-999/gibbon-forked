@@ -22,7 +22,7 @@ addValTagsAdt adt = case adt of
 
 -- mk for 3 parameter Adt take, len, tagLen, strLen
 gibbon_main =
-    let tac = mkTACList 100000 10 2000
+    let tac = mkTACList 100000 10 0
         -- _             = printsym (quote "TAC Adt: ")
         -- _             = printsym (quote "NEWLINE")
         -- _             = printPacked tac

@@ -32,7 +32,7 @@ processAdt adt = case adt of
 
 gibbon_main = 
     let len_list           = 3000000
-        len_string         = 10
+        len_string         = 50
         ca            = mkCAList len_list len_string
         -- _             = printsym (quote "CA Adt: ")
         -- _             = printsym (quote "NEWLINE")

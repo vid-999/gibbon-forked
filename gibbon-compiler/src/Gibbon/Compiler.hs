@@ -89,7 +89,7 @@ import           Gibbon.Passes.Lower          (lower)
 import           Gibbon.Passes.RearrangeFree  (rearrangeFree)
 import           Gibbon.Passes.Codegen        (codegenProg)
 import           Gibbon.Passes.Fusion2        (fusion2)
--- import Gibbon.Passes.CalculateBounds          (inferRegSize)
+import           Gibbon.Passes.OptimizeFieldOrder (shuffleDataCon)
 import           Gibbon.Pretty
 
 
@@ -534,7 +534,9 @@ passes config@Config{dynflags} l0 = do
               -- branches before InferLocations.
 
               -- Note: L1 -> L2
+              l1 <- goE1 "optimizeFieldOrder" shuffleDataCon l1
               l1 <- goE1 "copyOutOfOrderPacked" copyOutOfOrderPacked l1
+              l1 <- goE1 "simplify_2" simplifyL1 l1
               l1 <- go "L1.typecheck"    L1.tcProg     l1
               l1 <- goE1 "removeCopyAliases" removeAliasesForCopyCalls l1
               l2 <- goE2 "inferLocations"  inferLocs    l1

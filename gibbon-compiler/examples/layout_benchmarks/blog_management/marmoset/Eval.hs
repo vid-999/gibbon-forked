@@ -4,23 +4,21 @@ data Ast
   | Or Ast Ast
   | And Ast Ast
 
---eval :: Ast -> Bool
---eval x = case x of
---  Val b -> b
---  Not e -> if eval e then False else True
---  Or e1 e2 -> 
---    if eval e1 then True
---    else eval e2
---  And e1 e2 -> 
---    if eval e1 then eval e2
---    else False
+eval :: Ast -> Bool
+eval x = case x of
+  Val b -> b
+  Not e -> if eval e then False else True
+  Or e1 e2 -> 
+    if eval e1 then True
+    else eval e2
+  And e1 e2 -> 
+    if eval e1 then eval e2
+    else False
 
---simplify :: Ast -> Ast
---simplify x = Val (eval x)
+simplify :: Ast -> Ast
+simplify x = Val (eval x)
 
 evalR :: Ast -> Bool
-{-# ANN evalR Or #-}
-{-# ANN evalR And #-}
 evalR x = case x of
   Val b -> b
   Not e -> if evalR e then False else True
